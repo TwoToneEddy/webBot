@@ -36,6 +36,7 @@ time.sleep(5)
 driver.get(PS5_URL) 
 found = False
 while(found == False):
+    time.sleep(2.5)
     driver.refresh()
     try:
         a = driver.find_element_by_id('button--add-to-basket')
