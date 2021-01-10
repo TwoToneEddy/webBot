@@ -2,6 +2,7 @@ import time
 import os
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
 from playsound import playsound
 
@@ -21,16 +22,24 @@ ITEM_URL2 = "https://www.johnlewis.com/sony-playstation-5-dualsense-wireless-con
 
 
 driver = webdriver.Chrome('./chromedriver',chrome_options=chrome_options)
-driver.get('https://www.currys.co.uk/gbuk/s/authentication.html')
+driver.get('https://bank.barclays.co.uk/olb/authlogin/loginAppContainer.do#/identification')
+time.sleep(1)
+
+driver.find_element_by_id('label-sortCode-main').click()
+driver.find_element_by_id('surname0').send_keys("Hudson")
+driver.find_element_by_id('sortCode0').send_keys("20")
+driver.find_element_by_id('sortCode1').send_keys("97")
+driver.find_element_by_id('sortCode2').send_keys("48")
+driver.find_element_by_id('sortCode3').send_keys("90443700")
+driver.find_element_by_xpath('//*[@id="login-bootstrap"]/div/div[1]/div/div[1]/div[1]/div[1]/div[4]/section/form/div/div/div/div[11]/div/button').click()
 time.sleep(5)
-try:
-    driver.find_element_by_id('onetrust-accept-btn-handler').click()
-except:
-    pass
-driver.find_element_by_id('input-sEmail').send_keys(LOGIN_MAIL)
-driver.find_element_by_id('input-sPassword').send_keys(LOGIN_PASSWORD)
-driver.find_element_by_xpath('//*[@id="content"]/div[2]/div/div/form/div[3]/button').click()
-time.sleep(5)
+
+actions = ActionChains(driver) 
+actions.send_keys(Keys.TAB * 7)
+actions.perform()
+actions = ActionChains(driver) 
+actions.send_keys("o")
+actions.perform()
 driver.get(PS5_URL) 
 
 found = False

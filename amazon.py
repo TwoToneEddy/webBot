@@ -27,11 +27,17 @@ driver.find_element_by_id('ap_email').send_keys(LOGIN_MAIL)
 driver.find_element_by_id('continue').click()
 driver.find_element_by_id('ap_password').send_keys(LOGIN_PASSWORD)
 driver.find_element_by_id('signInSubmit').click()
-time.sleep(5)
+time.sleep(15)
 driver.get(PS5_URL) 
 found = False
 while(found == False):
+    #print("Refreshing")
     driver.refresh()
+    #driver.find_element_by_xpath('/html/body/div[2]/div[2]/div[5]/div[4]/div[4]/div[28]/div[1]/div/form/div[2]/ul/li[1]/span/div/span/span/span/button/div/div[1]/span').click()
+    #print("Clicking")
+    
+    time.sleep(5)
+    #print("Checking")
     try:
         a = driver.find_element_by_id('add-to-cart-button')
         playsound(alert)
